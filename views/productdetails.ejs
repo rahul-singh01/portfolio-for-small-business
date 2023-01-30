@@ -1,0 +1,122 @@
+
+<div class="page-heading about-heading header-text" style="background-image: url(/assets/images/New/Head/head-1.webp);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-content">
+                    <h4>Lorem ipsum dolor sit amet</h4>
+                    <h2>Product Details</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="products">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <div>
+                    <img src="<%= result.image %>" alt="" width="300px" height="400px" class="img-fluid wc-image">
+                </div>
+                <br>
+                <!-- <div class="row">
+                    <div class="col-sm-4 col-xs-6">
+                        <div>
+                            <img src="/assets/images/product-1-370x270.jpg" alt="" class="img-fluid">
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-sm-4 col-xs-6">
+                        <div>
+                            <img src="/assets/images/product-2-370x270.jpg" alt="" class="img-fluid">
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-sm-4 col-xs-6">
+                        <div>
+                            <img src="/assets/images/product-3-370x270.jpg" alt="" class="img-fluid">
+                        </div>
+                        <br>
+                    </div>
+                </div> -->
+            </div>
+
+            <div class="col-md-8 col-xs-12">
+                <form action="#" method="post" class="form">
+                    <h2><%= result.name %></h2>
+
+                    <br>
+
+                    <p class="lead">
+                        <small><del> ₹ <%= parseInt(result.price) %></del></small><strong class="text-primary"> ₹ <%= parseInt(result.price) - (0.1*parseInt(result.price)) %></strong>
+                    </p>
+
+                    <br>
+
+                    <p class="lead">
+                        <%= result.tags.join(' | ') %>
+                    </p>
+
+                    <br>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label class="control-label">Colour</label>
+                            <div class="form-group">
+                                <select class="form-control">
+                    <option value="0"><%= result.colour %></option>
+                    <option value="1">Green </option>
+                    <option value="2">Blue</option>
+                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <label class="control-label">Quantity</label>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="1">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <a href="#" class="btn btn-primary btn-block">Add to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="latest-products">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <h2>Similar Products</h2>
+                    <a href="/allproducts">view more <i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+            <% for(i=0 ; i < data.length ; i++) { %>
+                <div class="col-md-4">
+                    <div class="product-item">
+                        <a href="/productdetails/<%= data[i]._id %>"><img src="<%= data[i].image %>" alt=""></a>
+                        <div class="down-content">
+                            <a href="/productdetails/<%= data[i]._id %>">
+                                <h4><%= data[i].name %></h4>
+                            </a>
+                            <h6><small><del>₹ <%= parseInt(data[i].price) %></del></small>  ₹ <%= parseInt(data[i].price) - (0.1*parseInt(data[i].price)) %></h6>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+    

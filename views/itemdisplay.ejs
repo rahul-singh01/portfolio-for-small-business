@@ -1,0 +1,42 @@
+<div class="page-heading about-heading header-text" style="background-image: url(assets/images/New/Head/head-1.webp);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-content">
+                    <h4>Limited Stock Only</h4>
+                    <h2><%= section %></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="products">
+    <div class="container">
+        <div class="row">
+            <% for(i=0 ; i < data.length ; i++){ %>
+                <div class="col-md-4">
+                    <div class="product-item">
+                        <a href="/productdetails/<%= data[i]._id %>"><img src="<%= data[i].image %>" alt=""></a>
+                        <div class="down-content">
+                            <a href="/productdetails/<%= data[i]._id %>">
+                                <h4><% data[i].name %></h4>
+                            </a>
+                            <h6><small><del>₹ <%= parseInt(data[i].price) %></del></small>  ₹ <%= parseInt(data[i].price) - (0.1*parseInt(data[i].price)) %></h6>
+                            <p><%= data[i].tags.join(' | ') %></p>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+            <div class="col-md-12">
+                <ul class="pages">
+                    <li><a href="#">1</a></li>
+                    <li class="active"><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

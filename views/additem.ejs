@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add item pannel</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script></head>
+<body>
+    <style>
+        .li{
+            display: flex;
+        }
+        .box{
+            background-color: aquamarine;
+            margin: 5px;
+            border-radius: 15px;
+            border: 2px solid black !important;
+        }
+        .box > p{
+            text-align: center;
+            margin: 10px;
+            color: 10px solid black;
+            text-justify: center;
+            text-size-adjust: 10px;
+
+        }
+        .view{
+            display: flex;
+        }
+    </style>
+    <h3>Add Your Item Here</h3>
+    <p><strong>Name :</strong><input type="text" name="name" placeholder="Enter name of Item"></p>
+    <p><strong>Price :</strong><input type="number" name="price" placeholder="Enter Price of Item"></p>
+    <p><strong>Image :</strong><input type="text" name="image" placeholder="Enter Image Url of Item"></p>
+    <p><strong>Colour :</strong><input type="text" name="colour" placeholder="Enter Colour of Item"></p>
+    <div class="li"><p><strong>Tags : </strong>
+            <div class="view">
+            </div>
+            <input type="text" placeholder="Enter tags to add" id="tagvalue">
+            <button onclick="addtag()">Add tags + </button>
+    </p></div>
+    <br>
+    <br>
+    <label for="type">Select Type:</label>
+    <select name="type" id="type">
+        <option value="sarees">Sarees</option>
+        <option value="suit">Suit</option>
+        <option value="lehenga">Lehenga</option>
+    </select>
+    <button id="additemnow"><strong>Add Item<strong/></button>
+    <script>
+        tag_list = []
+        $("#additemnow").click(function() {
+            const data = new Object()
+            $('input').each((index, ele) => {
+                data[$(ele).attr('name')] = $(ele).val()
+            })
+            data[$('select').attr('name')] = $('select').val()
+            enc = btoa(JSON.stringify(tag_list))
+            main_data = {
+                ...data,
+                tags : enc
+            }
+            $.post("/api/v1/additem", main_data,
+                function(data, status) {
+                    alert("Data: " + data.status + "\nStatus: " + status);
+                    location.reload()
+                });
+        });
+        function addtag(){
+            const tagvalue = $("#tagvalue").val()
+            $('.view').append(`<div onclick="deletex(this)" class="box"><p>#${tagvalue}</p>`)
+            tag_list.push(tagvalue)
+            $("#tagvalue").val('')
+        }
+        function deletex(x){
+            const t = x.innerHTML.split('#')[1].replace('</p>','')
+            temp = []
+            for(i=0 ; i<tag_list.length ; i++) {
+                if(tag_list[i] === t){
+                    null
+                }else{
+                    temp.push(tag_list[i])
+                }
+            }
+            tag_list = []
+            tag_list = temp
+            $(x).remove()
+        }
+    </script>
+</body>
+</html>
