@@ -4,6 +4,7 @@ pakage-lock.json
 
 package-lock.json
 
+.env
 # filename.ext <-- to ignore this file, from anywhere, even if it is inside any folder
 # /filename.ext <-- to ignore this only from folder where gitignore exist
 # foldername/ <-- to ignore a folder
